@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   Palette "Bâton Arena"
+   Néon  (#7C5CFF) — l'identité, les CTA, le camp A
+   Cyan  (#22D3EE) — les accents, le camp B
+   Jeton (#FFB020) — tout ce qui touche à la monnaie fictive
+   ========================================================================== */
+
+@layer base {
+  :root {
+    --background: 250 30% 98%;
+    --foreground: 235 30% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 235 30% 12%;
+
+    --muted: 250 22% 95%;
+    --muted-foreground: 240 10% 45%;
+
+    --border: 250 18% 89%;
+    --input: 250 18% 86%;
+    --ring: 252 100% 68%;
+
+    --neon: 252 100% 68%;
+    --neon-foreground: 0 0% 100%;
+
+    --cyan: 187 85% 45%;
+    --cyan-foreground: 0 0% 100%;
+
+    --jeton: 38 100% 50%;
+    --jeton-foreground: 235 30% 12%;
+
+    --succes: 145 63% 38%;
+    --alerte: 32 94% 46%;
+    --danger: 0 74% 52%;
+
+    --camp-a: 252 100% 68%;
+    --camp-b: 187 85% 45%;
+
+    --radius: 0.9rem;
+  }
+
+  .dark {
+    --background: 240 32% 7%;
+    --foreground: 250 25% 96%;
+
+    --card: 240 26% 11%;
+    --card-foreground: 250 25% 96%;
+
+    --muted: 240 22% 16%;
+    --muted-foreground: 245 12% 66%;
+
+    --border: 240 20% 21%;
+    --input: 240 20% 24%;
+    --ring: 252 100% 72%;
+
+    --neon: 252 100% 72%;
+    --neon-foreground: 240 32% 7%;
+
+    --cyan: 187 90% 55%;
+    --cyan-foreground: 240 32% 7%;
+
+    --jeton: 38 100% 58%;
+    --jeton-foreground: 240 32% 7%;
+
+    --succes: 145 58% 48%;
+    --alerte: 32 94% 58%;
+    --danger: 0 74% 62%;
+
+    --camp-a: 252 100% 72%;
+    --camp-b: 187 90% 55%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  html {
+    scrollbar-gutter: stable;
+  }
+}
+
+@layer components {
+  .texte-neon {
+    @apply bg-gradient-to-r from-neon via-cyan to-jeton bg-clip-text text-transparent;
+  }
+
+  .lien-discret {
+    @apply text-muted-foreground transition-colors hover:text-foreground;
+  }
+
+  /* Fond d'arène : une grille discrète derrière les sections de match */
+  .grille-arene {
+    background-image:
+      linear-gradient(hsl(var(--border) / 0.6) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.6) 1px, transparent 1px);
+    background-size: 28px 28px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  }
+
+  /* Barre de chargement du matchmaking */
+  .barre-recherche {
+    background-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      hsl(var(--neon) / 0.55) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+  }
+
+  /* Fil vertical en pointillé de la timeline de match */
+  .fil-parcours {
+    background-image: linear-gradient(
+      to bottom,
+      hsl(var(--border)) 0 6px,
+      transparent 6px 12px
+    );
+    background-size: 2px 12px;
+    background-repeat: repeat-y;
+  }
+}
